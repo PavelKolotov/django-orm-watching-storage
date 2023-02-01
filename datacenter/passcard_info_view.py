@@ -1,14 +1,13 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from datacenter.models import Passcard
 from datacenter.models import Visit
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from datacenter.models import get_duration, format_duration
 
 
 def passcard_info_view(request, passcode):
 
-    passcard = Passcard.objects.get(passcode=passcode)
+    passcard = get_object_or_404(Passcard, passcode=passcode)
     visits_all = Visit.objects.filter(passcard=passcard)
     passcard_visits = []
     for visit in visits_all:
