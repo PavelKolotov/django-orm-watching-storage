@@ -5,12 +5,12 @@ from datacenter.models import get_duration, format_duration
 
 
 def storage_information_view(request):
-    visits_now = Visit.objects.filter(leaved_at=None)
+    visits_now = Visit.objects.filter(leaved_at__isnull=True)
     non_closed_visits = []
-    for index, visit_now in enumerate(visits_now):
-        passcard_name = Passcard.objects.filter(visit=visit_now)[0]
-        entered = visits_now[index].entered_at
-        duration = get_duration(visits_now[index])
+    for visit_now in visits_now:
+        passcard_name = visit_now.passcard
+        entered = visit_now.entered_at
+        duration = get_duration(visit_now)
         time_duration = format_duration(duration)
         non_closed_visit = {
                 'who_entered': passcard_name,

@@ -35,15 +35,10 @@ class Visit(models.Model):
 
 
 def get_duration(visit):
-    time_now = django.utils.timezone.localtime()
     entered_at = visit.entered_at
-    leaved_at = visit.leaved_at
-    if not leaved_at:
-        duration = time_now - entered_at
-        return duration
-    else:
-        duration = leaved_at - entered_at
-        return duration
+    leaved_at = django.utils.timezone.localtime(visit.leaved_at)
+    duration = leaved_at - entered_at
+    return duration
 
 
 def format_duration(duration):
