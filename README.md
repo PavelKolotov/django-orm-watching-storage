@@ -26,16 +26,26 @@ poetry update
 ## Окружение
 .env
 ```
-HOST= 
-PORT= 
-NAME= 
+DB_HOST= 
+DB_PORT= 
+DB_NAME= 
 DB_USER= 
-PASSWORD= 
-SECRET_KEY= 
+DB_PASSWORD= 
 
-DEBUG= 
+SECRET_KEY=[REPLACE_ME]
+ALLOWED_HOSTS=*
+DEBUG=False
 
 ```
+DB_HOST - имя хоста базы данных
+DB_PORT - порт базы данных
+DB_NAME - имя базы данных
+DB_USER - имя пользователя базы данных
+DB_PASSWORD - пароль пользователя базы данных
+
+SECRET_KEY - gекретный ключ для обеспечения криптографической подписи 
+ALLOWED_HOSTS - список разрешенных хостов
+DEBUG - режим отладки
 
 ## Запуск сервера
 
